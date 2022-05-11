@@ -3,4 +3,6 @@ type MyDiff<
   K extends string | number | symbol
 > = ({ [P in T]: P } & { [P in K]: never })[T]
 
-type MyOmit<T, K extends keyof T> = MyPick<T, MyDiff<keyof T, K>>
+type Keys<T, K extends keyof T> = MyDiff<keyof T, K>
+
+type MyOmit<T, K extends keyof T> = MyPick<T, Keys<T, K>>
